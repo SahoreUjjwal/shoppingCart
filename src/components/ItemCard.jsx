@@ -1,20 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "../styles/ItemCard.module.css";
-
-function ItemCard({ name, price }) {
-  const handleAdd = () => {};
-
-  const handleRemove = () => {};
+import { useValue } from '../context';
+function ItemCard(props) {
+  const {handleAdd,handleRemove} = useValue();
+  const {item} = props;
 
   return (
     <div className={styles.itemCard}>
-      <div className={styles.itemName}>{name}</div>
-      <div className={styles.itemPrice}>&#x20B9; {price}</div>
+      <div className={styles.itemName}>{item.name}</div>
+      <div className={styles.itemPrice}>&#x20B9; {item.price}</div>
       <div className={styles.itemButtonsWrapper}>
-        <button className={styles.itemButton} onClick={() => handleAdd()}>
+        <button className={styles.itemButton} onClick={() => handleAdd(item)}>
           Add
         </button>
-        <button className={styles.itemButton} onClick={() => handleRemove()}>
+        <button className={styles.itemButton} onClick={() => handleRemove(item.id)}>
           Remove
         </button>
       </div>
